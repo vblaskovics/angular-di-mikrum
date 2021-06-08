@@ -8,11 +8,11 @@ import { UserService } from '../services/user.service';
 })
 export class UserComponent implements OnInit {
   userName: string = '';
-  userService: UserService;
+  // userService: UserService;
 
-  constructor() {
-    const injector: any = ReflectiveInjector.resolveAndCreate([UserService]);
-    this.userService = injector.get(UserService);
+  constructor(public userService: UserService) {
+    // const injector: any = ReflectiveInjector.resolveAndCreate([UserService]);
+    // this.userService = injector.get(UserService);
   }
 
   signIn() : void {
