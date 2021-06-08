@@ -20,12 +20,15 @@ import { UserComponent } from './user/user.component';
   providers: [
     {provide: UserService, useClass: UserService},
     {provide: 'API_URL', useValue: 'http://test.api.com/v1'},
+    
     {provide: AnalyticsService, useFactory() {
       const loggingImplementation: AnalyticsImplementation = {
         recordEvent: (metric: Metric):void => {
           console.log('The metric is:', metric)
         }
       }
+
+      return new AnalyticsService(loggingImplementation);
     }}
   ],
   bootstrap: [AppComponent]
