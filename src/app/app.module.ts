@@ -23,6 +23,13 @@ import { UserComponent } from './user/user.component';
     {provide: UserService, useClass: UserService},
     {provide: 'API_URL', useValue: 'http://test.api.com/v1'},
 
+    // Feladat:
+    // Product url:   http://test2.api.com/v1
+    // Product route: /products
+    // ProductService will use: pathUrl: http://test2.api.com/v1/products
+    // ProductService(pathUrl)
+    // ProductComponent: ProductService URL-t megjeleníti
+
     {provide: AnalyticsService,
       deps: [HttpClient, 'API_URL'],
       useFactory(httpClient: HttpClient, apiUrl: string) {
