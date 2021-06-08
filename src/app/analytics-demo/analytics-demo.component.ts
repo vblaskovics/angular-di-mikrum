@@ -1,4 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { AnalyticsService } from '../services/analytics.service';
 
 @Component({
   selector: 'app-analytics-demo',
@@ -7,9 +8,25 @@ import { Component, Inject, OnInit } from '@angular/core';
 })
 export class AnalyticsDemoComponent implements OnInit {
   
-  constructor(@Inject('API_URL') apiUrl: string) { }
+  constructor(private analytics: AnalyticsService) {
+    this.analytics.record({
+      eventName: 'componentCreated',
+      scope: 'AnalyticsDemoComponent'
+    })
+  }
 
   ngOnInit(): void {
+    this.analytics.record({
+      eventName: 'componentOnInit',
+      scope: 'AnalyticsDemoComponent'
+    })
+  }
+
+  buyButtonPressed(product: string) {
+    this.analytics.record({
+      eventName: 'buyButtonPressed',
+      scope: product
+    })
   }
 
 }
