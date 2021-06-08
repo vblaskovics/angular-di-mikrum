@@ -3,7 +3,11 @@ import { AnalyticsImplementation, Metric } from '../analytics-demo/analytics-dem
 
 @Injectable()
 export class AnalyticsService {
-  constructor(private implementation: AnalyticsImplementation) { }
+  implementation: AnalyticsImplementation;
+
+  constructor(implementation: AnalyticsImplementation) {
+    this.implementation = implementation;
+  }
 
   record(metric: Metric): void {
     this.implementation.recordEvent(metric);
